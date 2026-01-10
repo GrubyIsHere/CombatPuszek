@@ -1,23 +1,24 @@
 # PlatformIO
-Code/.pio
-Code/.pioenvs
-Code/.piolibdeps
-Code/.pio/build
-Code/.pio/libdeps
-Code/.piolib
+.pio
+.pioenvs
+.piolibdeps
+.pio/build
+.pio/libdeps
+.piolib
 
 # Kicad
-Electronics/*.bak
-Electronics/*-backup*
-Electronics/*.kicad_pcb-bak
-Electronics/*.sch-bak
-Electronics/*.kicad_prl
-Electronics/*.kicad_pro
-Electronics/*.kicad_dru
-Electronics/*.kicad_wks
-Electronics/*-cache.lib
-Electronics/sym-lib-table
-Electronics/fp-lib-table
+*.bak
+*-backup*
+*.kicad_pcb-bak
+*.sch-bak
+*.kicad_prl
+*.kicad_pro
+*.kicad_dru
+*.kicad_wks
+*-cache.lib
+sym-lib-table
+fp-lib-table
+fp-info-cache
 
 # Autosave / temporary
 *~
