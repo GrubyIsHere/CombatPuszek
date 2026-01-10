@@ -1,37 +1,81 @@
-# PlatformIO
-.pio
-.pioenvs
-.piolibdeps
-.pio/build
-.pio/libdeps
-.piolib
+# PlatformIO + CPP
+*.pio
+*.pioenvs
+*.piolibdeps
+*.pio/build
+*.pio/libdeps
+*.piolib
+# Prerequisites
+*.d
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+# Precompiled Headers
+*.gch
+*.pch
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+# Fortran module files
+*.mod
+*.smod
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+# Executables
+*.exe
+*.out
+*.app
+
+
 
 # Kicad
+# Temporary files
+*.000
 *.bak
-*-backup*
+*.bck
 *.kicad_pcb-bak
-*.sch-bak
-*.kicad_prl
-*.kicad_pro
-*.kicad_dru
-*.kicad_wks
-*-cache.lib
-sym-lib-table
-fp-lib-table
+*.kicad_sch-bak
+*-backups
+*-cache*
+*-bak
+*-bak*
+*~
+~*
+_autosave-*
+\#auto_saved_files\#
+*.tmp
+*-save.pro
+*-save.kicad_pcb
 fp-info-cache
+~*.lck
+\#auto_saved_files#
+# Netlist files (exported from Eeschema)
+*.net
+# Autorouter files (exported from Pcbnew)
+*.dsn
+*.ses
+# Archived Backups (KiCad 6.0)
+**/*-backups/*.zip
+# Local project settings
+*.kicad_prl
 
+
+# Other
+*.png
+*.vscode
 # Autosave / temporary
 *~
 *.tmp
 *.swp
 .DS_Store
 Thumbs.db
-
 # System
 .env
 .env.*
 !*.env.example
-
-# Other
-.png
-.vscode
