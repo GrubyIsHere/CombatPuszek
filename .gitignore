@@ -1,0 +1,32 @@
+# PlatformIO w folderze Code
+Code/.pio
+Code/.pioenvs
+Code/.piolibdeps
+Code/.pio/build
+Code/.pio/libdeps
+Code/.piolib
+
+# Kicad w folderze Electronics
+Electronics/*.bak
+Electronics/*-backup*
+Electronics/*.kicad_pcb-bak
+Electronics/*.sch-bak
+Electronics/*.kicad_prl
+Electronics/*.kicad_pro
+Electronics/*.kicad_dru
+Electronics/*.kicad_wks
+Electronics/*-cache.lib
+Electronics/sym-lib-table
+Electronics/fp-lib-table
+
+# Autosave i temporary
+*~
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db
+
+# Systemowe
+.env
+.env.*
+!*.env.example
