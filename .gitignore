@@ -33,7 +33,6 @@
 *.app
 
 
-
 # Kicad
 # Temporary files
 *.000
@@ -64,7 +63,7 @@ fp-info-cache
 **/*-backups/*.zip
 # Local project settings
 *.kicad_prl
-
+q
 
 # Other
 *.png

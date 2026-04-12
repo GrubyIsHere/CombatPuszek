@@ -12,6 +12,7 @@ S_Saw::S_Saw()
 // Destruktor
 S_Saw::~S_Saw()
 {
+  Stop();
   ledcDetachPin(saw_pin);
 }
 
@@ -35,6 +36,7 @@ int S_Saw::Stop()
 {
   ledcWrite(ledc_channel, off_speed);
   current_saw_state = 0;
+  current_duty = off_speed;
   return 0;
 }
 
@@ -49,14 +51,17 @@ int S_Saw::Hold()
 {
   ledcWrite(ledc_channel, min_speed);
   current_saw_state = 2;
+  current_duty = min_speed;
   return 0;
 }
 
 int S_Saw::SetSpeed(uint8_t target_speed_percent)
 {
-  uint32_t pulse_width = map(target_speed_percent, 0, 100, pulse_min_us, pulse_max_us);
+   uint32_t pulse_width = map(target_speed_percent, 0, 100,
+                             ACTIVE_MOTOR_PRESET->pulse_min_us,
+                             ACTIVE_MOTOR_PRESET->pulse_max_us);
 
-  uint8_t duty = (pulse_width * 255) / pulse_period_us;
+  uint8_t duty = (pulse_width * 255) / ACTIVE_MOTOR_PRESET->pulse_period_us;
 
   current_duty = duty;
   current_saw_speed_percent = target_speed_percent;
