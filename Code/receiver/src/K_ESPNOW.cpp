@@ -6,6 +6,7 @@
 
 //musi być tu zainicjalizowane, żeby działało globalnie, bo niedorozówj cpp
 struct_message K_ESPNOW::control;
+volatile unsigned long K_ESPNOW::last_receive_time = 0;
 
 // Konstruktor
 K_ESPNOW::K_ESPNOW()
@@ -21,6 +22,8 @@ K_ESPNOW::K_ESPNOW()
 void K_ESPNOW::CallbackCopy(const uint8_t *mac,const uint8_t *incomingData, int len)
 {
   memcpy(&control, incomingData, sizeof(control));
+
+  last_receive_time = millis();
 
   //DEBUG
   // Serial.println(control.brake);
@@ -39,10 +42,22 @@ int K_ESPNOW::Init()
     Serial.println("Error initializing ESP-NOW");
   }
 
+  esp_now_register_recv_cb(esp_now_recv_cb_t(CallbackCopy));
+
+  last_receive_time = millis();
+
   return 0;
 }
 
-esp_err_t K_ESPNOW::Receive()
+bool K_ESPNOW::IsConnected() 
 {
-return esp_now_register_recv_cb(esp_now_recv_cb_t(CallbackCopy));
+  return (millis() - last_receive_time) < CONNECTION_TIMEOUT_MS;
+}
+
+void K_ESPNOW::UpdateConnectionState() 
+{
+  if (!IsConnected()) 
+  {
+    control.connected = false;
+  }
 }

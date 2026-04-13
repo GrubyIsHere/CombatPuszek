@@ -10,12 +10,8 @@ struct_message K_ESPNOW::control;
 // Konstruktor
 K_ESPNOW::K_ESPNOW()
 {
-  Serial.println("dupa1");
   wifi = new WiFiClass();
-  Serial.println("dupa2");
-  
-  //Init();
-  Serial.println("dupa3");
+  last_send_time_ms = 0;
 
 }
 
@@ -36,7 +32,9 @@ int K_ESPNOW::Init()
   receiver.channel = 0;
   receiver.encrypt = false;
 
-  esp_now_add_peer(&receiver);
+  while (esp_now_add_peer(&receiver) != ESP_OK) {
+    Serial.println("Failed to add peer");
+  }
   //Serial.println("CONECTED");
 
   return 0;
@@ -44,15 +42,15 @@ int K_ESPNOW::Init()
 
 int K_ESPNOW::Send()
 {
+  unsigned long now = millis();
+
+  if (now - last_send_time_ms < send_delay_ms) {
+    return 2;   // wysyłanie pominięte – zbyt krótki odstęp czasu
+  }
+
+  last_send_time_ms = now;
+
   esp_err_t result = esp_now_send(receiver_mac_address, (uint8_t *)&control, sizeof(control));
 
-  if (result == ESP_OK)
-  {
-    return 0;
-  }
-  else
-  {
-    return 1;
-  }
-  delay(interval);
+  return (result == ESP_OK) ? 0 : 1;
 }

@@ -6,11 +6,11 @@
 #include <WiFi.h>
 #include <esp_now.h>
 
-//dodać pola 
+//dodać pola jak będzie pilot z analogami
 typedef struct struct_message
 {
-  float speed_left;
-  float speed_right;
+  int16_t speed_left;
+  int16_t speed_right;
   bool saw;
   bool brake;
   bool connected;
@@ -27,7 +27,8 @@ public:
 
   int Init();
 
-  esp_err_t Receive();
+  bool IsConnected();           // sprawdza timeout
+  void UpdateConnectionState(); // aktualizuje control.connected na podstawie czasu
 
   //------//
   // PAMIĘĆ//
@@ -39,6 +40,9 @@ private:
   //------//
   // PAMIĘĆ//
   //------//
+
+  static volatile unsigned long last_receive_time; // czas ostatniego pakietu
+
 
   //----------------//
   // DEKLARACJE METOD//
@@ -57,7 +61,8 @@ private:
   // NASTAWY//
   //-------//
 
-  const long interval = 6; // dilej w us
+  static const unsigned long CONNECTION_TIMEOUT_MS = 500; // np. 500 ms
+
 };
 
 #endif

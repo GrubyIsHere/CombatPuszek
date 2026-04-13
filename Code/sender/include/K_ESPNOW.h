@@ -9,8 +9,8 @@
 // dodać pola
 typedef struct struct_message
 {
-  float speed_left;
-  float speed_right;
+  int16_t speed_left;
+  int16_t speed_right;
   bool saw;
   bool brake;
   bool connected;
@@ -41,6 +41,7 @@ private:
   //------//
 
   uint8_t receiver_mac_address[6] = {0x88, 0x13, 0xBF, 0x06, 0x21, 0xA4}; //biała brudna
+  unsigned long last_send_time_ms; 
 
   //----------------//
   // DEKLARACJE METOD//
@@ -57,7 +58,7 @@ private:
   // NASTAWY//
   //-------//
 
-  const long interval = 6; // dilej w us
+  const uint8_t send_delay_ms = 10;
 };
 
 #endif
