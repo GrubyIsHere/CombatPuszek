@@ -7,12 +7,12 @@ A_Robot R;
 
 void setup() {
   // Serial Monitor DEBUG
-  // Serial.begin(115200);
-  // Serial.println("predone");
+  Serial.begin(115200);
+  Serial.println("predone");
 
   E.Init();
 
-  // Serial.println("done");
+  Serial.println("done");
 }
 
 void loop() {
@@ -22,14 +22,10 @@ void loop() {
   R.ManualControl();
 
 // debug
-  // Serial.println("------------------------");
-  // Serial.println(missed_confirmations);
-
-  // Serial.println("------------------------");
-  // Serial.println(E.control.brake);
-  // Serial.println(E.control.connected);
-  // Serial.println(E.control.saw);
-  // Serial.println(E.control.speed_left);
-  // Serial.println(E.control.speed_right);
+  Serial.println(E.control.brake);
+  Serial.println(E.control.connected);
+  Serial.println(E.control.saw);
+  Serial.println(E.control.speed_left);
+  Serial.println(E.control.speed_right);
   // delay(1000);
 }

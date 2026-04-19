@@ -58,6 +58,7 @@ void K_ESPNOW::UpdateConnectionState()
 {
   if (!IsConnected()) 
   {
+    Serial.println("Error: disconnected");
     control.connected = false;
   }
 }

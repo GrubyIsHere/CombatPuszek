@@ -61,7 +61,7 @@ private:
   // NASTAWY//
   //-------//
 
-  static const unsigned long CONNECTION_TIMEOUT_MS = 500; // np. 500 ms
+  static const unsigned long CONNECTION_TIMEOUT_MS = 1000;
 
 };
 

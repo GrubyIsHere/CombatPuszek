@@ -21,7 +21,7 @@ namespace MotorPresets {
     //  920KV 
     const MotorPreset KV920 = {
         "920KV",
-        1000, 1050, 2000, 20000
+        1050, 1150, 2000, 20000
     };
 }
 

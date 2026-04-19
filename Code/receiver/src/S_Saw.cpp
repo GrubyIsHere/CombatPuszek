@@ -28,20 +28,27 @@ void S_Saw::Init()
   //hardkoding prędkości max, bo nie mamy sterowania analogiem
   SetSpeed(100);
 
+  // //procedura kalibracji ESC
+  // ledcWrite(ledc_channel, off_speed);
+  // delay(100);
+  // ledcWrite(ledc_channel, max_speed);
+  // delay(100);
+
   // Silnik wyłączony na start
-  ledcWrite(ledc_channel, off_speed);
+  Stop();
 }
 
 int S_Saw::Stop()
 {
-  ledcWrite(ledc_channel, off_speed);
-  current_saw_state = 0;
   current_duty = off_speed;
+  ledcWrite(ledc_channel, current_duty);
+  current_saw_state = 0;
   return 0;
 }
 
 int S_Saw::Start()
 {
+  current_duty = max_speed;
   ledcWrite(ledc_channel, current_duty);
   current_saw_state = 1;
   return 0;
@@ -49,9 +56,9 @@ int S_Saw::Start()
 
 int S_Saw::Hold()
 {
-  ledcWrite(ledc_channel, min_speed);
-  current_saw_state = 2;
   current_duty = min_speed;
+  ledcWrite(ledc_channel, current_duty);
+  current_saw_state = 2;
   return 0;
 }
 
